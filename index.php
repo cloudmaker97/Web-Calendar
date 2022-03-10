@@ -71,6 +71,7 @@ function GetCurrentDayOfMonth() {
 	return $time->format("d");
 }
 
+// Holt sich die aktuelle Kalenderwoche oder die des angegebenen Datum-Formats (dd.mm.yyyy)
 function GetCalendarWeek($datetime=null) {
 	if(is_null($datetime)) {
 		$dateTime = new DateTime();
