@@ -71,6 +71,15 @@ function GetCurrentDayOfMonth() {
 	return $time->format("d");
 }
 
+function GetCalendarWeek($datetime=null) {
+	if(is_null($datetime)) {
+		$dateTime = new DateTime();
+	} else {
+		$dateTime = new DateTime($datetime);
+	}
+	return "KW".$dateTime->format("W"). " |";
+}
+
 // Erstellt den Kalender und gibt diesen aus
 function BuildCalendar() {
 	$yearAndMonth = GetYearAndMonth();
@@ -80,7 +89,7 @@ function BuildCalendar() {
 	$isCurrentCalendar = GetIsCurrentCalendar();
 	$monthOfCalendar = GetMonth($yearAndMonth[1]);
 	echo "\r\n\t";
-	echo sprintf("== %s, %s ==\r\n", $monthOfCalendar, $yearAndMonth[0]);
+	echo sprintf("== %s, %s ==\r\n", $monthOfCalendar, $yearAndMonth[0]);	
 
 	echo "\r\n";
 	foreach(GetDaysShort() as $Day) {
@@ -88,6 +97,8 @@ function BuildCalendar() {
 	}
 
 	echo "\r\n\t- - - - - - - - - - - - - - - - - - - - - - - - - - - - \r\n\r\n";
+	echo GetCalendarWeek(sprintf("%s.%s.%s", 1, $yearAndMonth[1], $yearAndMonth[0]));
+
 	$offsetDays = $firstWeekday-1;
 	for ($x=0; $x < $offsetDays; $x++) { 
 		echo " "."\t";
@@ -95,14 +106,22 @@ function BuildCalendar() {
 
 	for ($i=1; $i <= $daysInMonth; $i++) { 
 		echo "\t";
+
+		if(($i+$offsetDays) % 7 == 0) {
+			echo "\033[31m";
+		}
+
 		if($i == $currentDayOfMonth && $isCurrentCalendar) {
 			echo sprintf("(%s)", $i);
 		} else {
 			echo $i;
 		}
 		
+		echo "\033[37m";
+
 		if(($i+$offsetDays) % DAYS_IN_WEEK == 0) {
 			echo "\r\n\r\n";
+			echo GetCalendarWeek(sprintf("%s.%s.%s", $i+1, $yearAndMonth[1], $yearAndMonth[0]));
 		}
 	}
 
