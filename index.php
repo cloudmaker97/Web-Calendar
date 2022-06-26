@@ -16,6 +16,10 @@ $calendar = new Calendar();
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
     <link rel="manifest" href="assets/site.webmanifest">
+</head>
+<body>
+    <?= $calendar->getComposedCalendar(); ?>
+
     <style>
         :root {
             --TableFont: white;
@@ -63,7 +67,12 @@ $calendar = new Calendar();
         td.calendarWeekEntry {
             color: var(--TableCalendarWeek);
         }
-        
+
+        td.calendarWeekEntry:hover {
+            cursor: pointer;
+            background-color: var(--TableBorder);
+        }
+
         td.calendarDay:hover {
             cursor: pointer;
             background-color: var(--TableBorder);
@@ -83,8 +92,18 @@ $calendar = new Calendar();
             color: var(--CurrentDayColor);
         }
     </style>
-</head>
-<body>
-    <?= $calendar->getComposedCalendar(); ?>
+    <script>
+        document.querySelectorAll("td.calendarDay").forEach(calendarDayEntry => {
+            calendarDayEntry.addEventListener("click", (e) => {
+                navigator.clipboard.writeText(`${e.target.textContent}.`);
+            });
+        })
+
+        document.querySelectorAll("td.calendarWeekEntry").forEach(calendarDayEntry => {
+            calendarDayEntry.addEventListener("click", (e) => {
+                navigator.clipboard.writeText(`KW${e.target.textContent}`);
+            });
+        })
+    </script>
 </body>
 </html>
