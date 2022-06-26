@@ -94,12 +94,14 @@ $calendar = new Calendar();
     </style>
     <script>
         document.querySelectorAll("td.calendarDay").forEach(calendarDayEntry => {
+            calendarDayEntry.setAttribute("title", "Kopieren des Kalender-Tages");
             calendarDayEntry.addEventListener("click", (e) => {
                 navigator.clipboard.writeText(`${e.target.textContent}.`);
             });
         })
 
         document.querySelectorAll("td.calendarWeekEntry").forEach(calendarDayEntry => {
+            calendarDayEntry.setAttribute("title", "Kopieren der Kalender-Woche");
             calendarDayEntry.addEventListener("click", (e) => {
                 navigator.clipboard.writeText(`KW${e.target.textContent}`);
             });
