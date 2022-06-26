@@ -93,17 +93,19 @@ $calendar = new Calendar();
         }
     </style>
     <script>
-        document.querySelectorAll("td.calendarDay").forEach(calendarDayEntry => {
-            calendarDayEntry.setAttribute("title", "Kopieren des Kalender-Tages");
-            calendarDayEntry.addEventListener("click", (e) => {
-                navigator.clipboard.writeText(`${e.target.textContent}.`);
-            });
-        })
-
-        document.querySelectorAll("td.calendarWeekEntry").forEach(calendarDayEntry => {
-            calendarDayEntry.setAttribute("title", "Kopieren der Kalender-Woche");
-            calendarDayEntry.addEventListener("click", (e) => {
-                navigator.clipboard.writeText(`KW${e.target.textContent}`);
+        document.querySelectorAll("td.calendarWeekEntry, td.calendarDay").forEach(calendarEntry => {
+            let CopyClipboardText, CopyElementTitle = "";
+            calendarEntry.setAttribute("title", "Kopieren der Kalender-Woche");
+            calendarEntry.addEventListener("click", (e) => {
+                if(calendarEntry.classList.contains("calendarWeekEntry")) {
+                    CopyClipboardText = `KW${e.target.textContent}`;
+                    CopyElementTitle = `Kalender-Woche`;
+                } else if(calendarEntry.classList.contains("calendarDay")) {
+                    CopyClipboardText = `${e.target.textContent}`;
+                    CopyElementTitle = `Kalender-Tag`;
+                }
+                calendarEntry.setAttribute("title", CopyElementTitle);
+                navigator.clipboard.writeText(CopyClipboardText);
             });
         })
     </script>
