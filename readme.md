@@ -1,7 +1,23 @@
-# PHP Kalender (ASCII)
+# Web Calendar
 
-Dieses Script kann einen Kalender auf einer Webseite oder einer Eingabeaufforderung darstellen. Das Script ist in der Lage auch auf Wunsch einen anderen Kalenderbereich mit Angabe von Monat und Jahr (XX XXXX) anzuzeigen, z.B. "php index.php 3 2022" zeigt den Monat März des Jahres 2022 an. Ist kein Datum angegeben, so wird der aktuelle Kalendertag geklammert dargestellt. 
+## Description
+This an easy-to-use and modifiable software for creating a monthly calendar on a PHP-driven Webserver. It has the
+functionality to display the week-days, calendar-weeks and the offset for the first calendar-day 
+(corresponding to its day-number).
 
-![calendar](https://user-images.githubusercontent.com/4189795/174492880-c5574fcc-5fb9-4111-9a34-93559567d7e4.png)
+## Requirements
+- PHP >= 7.0
+- PHP-Composer
 
-![screenshot](https://user-images.githubusercontent.com/4189795/157191315-0f966ee0-936d-4af5-8e6c-1286c5421d8e.png)
+### If you use Scoop.sh
+Scoop is a package-manager for windows (Developer Tools, Software, Games etc.). You can check it out on GitHub or https://scoop.sh
+```
+scoop install php composer
+```
+
+## Installation
+Put it on the webserver and run the composer dump-autoload command for using the autoloader for dependencies.
+```
+composer dump-autoload
+```
+After that you are able to access the calendar via. your Web-Browser by opening your chosen/configured URL.
