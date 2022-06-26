@@ -1,4 +1,6 @@
 # Web Calendar
+## Preview
+![calendar](https://user-images.githubusercontent.com/4189795/175835416-e3032cf8-4d90-4323-ab2d-d9b269814b6c.png)
 
 ## Description
 This an easy-to-use and modifiable software for creating a monthly calendar on a PHP-driven Webserver. It has the
