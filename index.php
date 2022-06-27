@@ -94,17 +94,13 @@ $calendar = new Calendar();
     </style>
     <script>
         document.querySelectorAll("td.calendarWeekEntry, td.calendarDay").forEach(calendarEntry => {
-            let CopyClipboardText, CopyElementTitle = "";
-            calendarEntry.setAttribute("title", "Kopieren der Kalender-Woche");
+            let CopyClipboardText = "";
             calendarEntry.addEventListener("click", (e) => {
                 if(calendarEntry.classList.contains("calendarWeekEntry")) {
                     CopyClipboardText = `KW${e.target.textContent}`;
-                    CopyElementTitle = `Kalender-Woche`;
                 } else if(calendarEntry.classList.contains("calendarDay")) {
                     CopyClipboardText = `${e.target.textContent}`;
-                    CopyElementTitle = `Kalender-Tag`;
                 }
-                calendarEntry.setAttribute("title", CopyElementTitle);
                 navigator.clipboard.writeText(CopyClipboardText);
             });
         })
