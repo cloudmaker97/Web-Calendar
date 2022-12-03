@@ -15,7 +15,7 @@ php console/index.php
 ```
 
 ## Requirements
-- PHP >= 7.0
+- PHP >= 8.0
 - PHP-Composer
 
 ### If you use Scoop.sh
